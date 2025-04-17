@@ -24,6 +24,14 @@ class Form
 			return ("\033[0;31mGrade too low !\033[0m");
 		}
 	};
+    class IsSignedException: public std::exception
+	{
+		public:
+		virtual const char* what() const throw()
+		{
+			return ("\033[0;31mthe form is already signed !\033[0m");
+		}
+	};
         Form(void);
         Form(const Form& src);
 		Form(std::string name, int const signGrade, int const exeGrade);
@@ -31,8 +39,8 @@ class Form
         ~Form(void);
 		std::string const getName(void) const;
 		bool getSigned(void) const;
-		int	const getSignGrade(void) const;
-		int	const getExeGrade(void) const;
+		int	getSignGrade(void) const;
+		int	getExeGrade(void) const;
 		void beSigned(Bureaucrat const & b);
 
 

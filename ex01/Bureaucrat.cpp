@@ -12,13 +12,12 @@ Bureaucrat::Bureaucrat(std::string const name, int grade): _name(name), _grade(g
 		if (_grade > 150)
 			throw GradeTooLowException();
 		else if (_grade < 1)
-			throw GradeTooHighException();			
+			throw GradeTooHighException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& src): _name(src._name)
+Bureaucrat::Bureaucrat(const Bureaucrat& src): _name(src._name), _grade(src._grade)
 {
     std::cout << "Bureaucrat copy constructor called" << std::endl;
-    *this = src;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
@@ -58,30 +57,21 @@ void Bureaucrat::decrementGrade(void)
 		if ((_grade + 1) > 150)
 			throw GradeTooLowException();
 		else
-			_grade++;	
+			_grade++;
 }
 
 void Bureaucrat::signForm(Form &form)
 {
-	std::string reason;
+    try
+    {
+        form.beSigned(*this);
+        std::cout << SMYELLOW << _name << " signed " << form.getName() << RESET << std::endl;
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << SMRED << _name << " couldn’t sign " << form.getName() << " because " << e.what() << RESET << std::endl;
+    }
 
-	form.beSigned(*this);
-
-	// if (_grade > form.getSignGrade() || form.getSigned())
-	// {
-	// 	if (form.getSigned())
-	// 		reason = "it's already signed";
-	// 	else
-	// 		reason = _name + "\'s grade is too low";
-	// 	std::cout << _name << " couldn\'t sign " << form.getName() << " because " << reason << std::endl; 
-	// }
-	// else if (_grade <= form.getSignGrade() && form.getSigned())
-	// 	std::cout << _name << " couldn\'t sign " << form.getName() << " because it's already signed" << std::endl; 
-	// else
-	// {
-	// 	form.beSigned(*this);
-	// 	std::cout << _name << " signed " << form.getName() << std::endl;
-	// }
 }
 
 std::ostream & operator<<(std:: ostream & o, Bureaucrat const & rhs)

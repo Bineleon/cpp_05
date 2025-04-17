@@ -11,13 +11,12 @@ Bureaucrat::Bureaucrat(std::string const name, int grade): _name(name), _grade(g
 		if (_grade > 150)
 			throw GradeTooLowException();
 		else if (_grade < 1)
-			throw GradeTooHighException();			
+			throw GradeTooHighException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& src): _name(src._name)
+Bureaucrat::Bureaucrat(const Bureaucrat& src): _name(src._name), _grade(src._grade)
 {
     std::cout << "Bureaucrat copy constructor called" << std::endl;
-    *this = src;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
@@ -57,7 +56,7 @@ void Bureaucrat::decrementGrade(void)
 		if ((_grade + 1) > 150)
 			throw GradeTooLowException();
 		else
-			_grade++;	
+			_grade++;
 }
 
 std::ostream & operator<<(std:: ostream & o, Bureaucrat const & rhs)

@@ -20,7 +20,7 @@ int main(void)
 {
 	{
 		printHeader("Test: Operator<<");
-		try 
+		try
 		{
 			Bureaucrat b;
 			std::cout << b << std::endl;
@@ -33,12 +33,10 @@ int main(void)
 		{
 			std::cerr << e.what() << std::endl;
 		}
-		// std::cout << b;
-		
 	}
 	{
 		printHeader("Test: Grade too high");
-		try 
+		try
 		{
 			Bureaucrat b1("Bob", 0);
 			std::cout << "Should never be seen" << std::endl;
@@ -54,7 +52,7 @@ int main(void)
 	}
 	{
 		printHeader("Test: Increment");
-		try 
+		try
 		{
 			Bureaucrat b1("BobHigh", 2);
 			b1.incrementGrade();
@@ -71,7 +69,7 @@ int main(void)
 	}
 	{
 		printHeader("Test: Decrement");
-		try 
+		try
 		{
 			Bureaucrat b1("BobLow", 149);
 			b1.decrementGrade();
@@ -87,19 +85,21 @@ int main(void)
 		}
 	}
 	{
-		printHeader("Test: Copy and assignment");
-		try 
+		printHeader("Test: Default, Copy and assignment");
+		try
 		{
+            Bureaucrat b;
 			Bureaucrat b1("Bob", 1);
 			Bureaucrat b2("Bobby", 150);
-	
+
 			Bureaucrat b3(b1);
 			Bureaucrat b4 = b2;
+            std::cout << SMYELLOW << "Bureaucrat b:			" << b << RESET << std::endl;
 			std::cout << SMYELLOW << "Bureaucrat b1:		" << b1 << RESET << std::endl;
 			std::cout << SMYELLOW << "Bureaucrat b2:		" << b2 << RESET << std::endl;
 			std::cout << SMYELLOW << "Bureaucrat b3(b1): 	" << b3 << RESET << std::endl;
 			std::cout << SMYELLOW << "Bureaucrat b4 = b2:	" << b4 << RESET << std::endl;
-			
+
 		}
 		catch(Bureaucrat::GradeTooHighException& e)
 		{

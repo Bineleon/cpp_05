@@ -12,13 +12,12 @@ Form::Form(std::string name, int const signGrade, int const exeGrade): _name(nam
 	if (signGrade > 150 || exeGrade > 150)
 			throw GradeTooLowException();
 	else if (signGrade < 1 || exeGrade < 1)
-			throw GradeTooHighException();	
+			throw GradeTooHighException();
 }
 
 Form::Form(const Form& src): _name(src._name), _signed(src._signed), _signGrade(src._signGrade), _exeGrade(src._exeGrade)
 {
     std::cout << "Form copy constructor called" << std::endl;
-    *this = src;
 }
 
 Form& Form::operator=(const Form& rhs)
@@ -43,19 +42,21 @@ bool Form::getSigned(void) const
 	return _signed;
 }
 
-int	const Form::getSignGrade(void) const
+int Form::getSignGrade(void) const
 {
 	return _signGrade;
 }
 
-int	const Form::getExeGrade(void) const
+int Form::getExeGrade(void) const
 {
 	return _exeGrade;
 }
 
 void Form::beSigned(Bureaucrat const & b)
 {
-	if (b.getGrade() > _signGrade)
+    if (_signed)
+        throw IsSignedException();
+	else if (b.getGrade() > _signGrade)
 		throw GradeTooLowException();
 	else
 		_signed = true;
@@ -70,6 +71,6 @@ std::ostream & operator<<(std:: ostream & o, Form const & rhs)
 	else
 		status = "not signed";
 
-    o << "Form is : " << status << ", requiered grade to sign: " << rhs.getSignGrade() << ", requiered grade to execute: " << rhs.getExeGrade() << "." << std::endl;
+    o << SMYELLOW << "Form \"" << rhs.getName() <<  "\" is : " << status << ", requiered grade to sign: " << rhs.getSignGrade() << ", requiered grade to execute: " << rhs.getExeGrade() << "." << RESET;
     return o;
 }
