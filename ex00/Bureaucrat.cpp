@@ -64,3 +64,13 @@ std::ostream & operator<<(std:: ostream & o, Bureaucrat const & rhs)
     o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << ".";
     return o;
 }
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return ("\033[0;31mGrade too high ! Must be between [1-150]\033[0m");
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return ("\033[0;31mGrade too low ! Must be between [1-150]\033[0m");
+}

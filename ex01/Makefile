@@ -1,7 +1,7 @@
 RESET				= \e[0m\033[0m
 GREEN				= \033[0;32m\e[1m
 
-NAME = Form
+NAME				= Form
 
 CC					= c++
 FLAGS				= -Wall -Wextra -Werror -g3 -std=c++98 -MMD -MP

@@ -11,18 +11,17 @@ class Form
 	class GradeTooHighException: public std::exception
 	{
 		public:
-		virtual const char* what() const throw()
-		{
-			return ("\033[0;31mGrade too high !\033[0m");
-		}
+		virtual const char* what() const throw();
 	};
 	class GradeTooLowException: public std::exception
 	{
 		public:
-		virtual const char* what() const throw()
-		{
-			return ("\033[0;31mGrade too low !\033[0m");
-		}
+		virtual const char* what() const throw();
+	};
+	class IsSignedException: public std::exception
+	{
+		public:
+		virtual const char* what() const throw();
 	};
     class IsSignedException: public std::exception
 	{
