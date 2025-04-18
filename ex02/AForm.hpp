@@ -29,18 +29,23 @@ class AForm
 		public:
 		virtual const char* what() const throw();
 	};
+    class RobotomyFailedException: public std::exception
+	{
+		public:
+		virtual const char* what() const throw();
+	};
 		AForm(void);
 		AForm(const AForm& src);
 		AForm(std::string name, int const signGrade, int const exeGrade);
 		AForm& operator=(const AForm& rhs);
-		~AForm(void);
+		virtual ~AForm(void);
 		std::string const getName(void) const;
 		bool getSigned(void) const;
 		int	getSignGrade(void) const;
 		int	getExeGrade(void) const;
 		void beSigned(Bureaucrat const & b);
-        virtual void execute(Bureaucrat const & executor) const = 0;
-
+        void execute(Bureaucrat const & executor) const;
+        virtual void action(void) const = 0;
 
 	private:
 		std::string const _name;

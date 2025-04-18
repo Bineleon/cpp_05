@@ -14,7 +14,6 @@ class ShrubberyCreationForm: public AForm
 		~ShrubberyCreationForm(void);
         void action(void) const;
         void writeTrees(std::ofstream& myFile) const;
-        void execute(Bureaucrat const & executor) const;
 
 	private:
 		std::string const _target;

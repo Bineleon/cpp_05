@@ -8,7 +8,7 @@ Bureaucrat::Bureaucrat(void): _name("Random"), _grade(150)
 
 Bureaucrat::Bureaucrat(std::string const name, int grade): _name(name), _grade(grade)
 {
-	std::cout << "Bureaucrat constructor called with name : " << name << " and grade : " << grade << std::endl;
+	// std::cout << "Bureaucrat constructor called with name : " << name << " and grade : " << grade << std::endl;
 		if (_grade > 150)
 			throw GradeTooLowException();
 		else if (_grade < 1)
@@ -17,7 +17,7 @@ Bureaucrat::Bureaucrat(std::string const name, int grade): _name(name), _grade(g
 
 Bureaucrat::Bureaucrat(const Bureaucrat& src): _name(src._name), _grade(src._grade)
 {
-    std::cout << "Bureaucrat copy constructor called" << std::endl;
+    // std::cout << "Bureaucrat copy constructor called" << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
@@ -60,7 +60,7 @@ void Bureaucrat::decrementGrade(void)
 			_grade++;
 }
 
-void Bureaucrat::signAForm(AForm &form)
+void Bureaucrat::signForm(AForm &form)
 {
     try
     {
@@ -79,10 +79,11 @@ void Bureaucrat::executeForm(AForm const & form)
     try
     {
         form.execute(*this);
+        std::cout << SMGREEN << _name << " executed " << form.getName() << RESET << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
+        std::cerr << SMRED << _name << " could not execute " << form.getName() << " because " << e.what() << RESET << std::endl;
     }
 
 }

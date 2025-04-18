@@ -3,12 +3,12 @@
 
 AForm::AForm(void): _signed(false), _signGrade(1), _exeGrade(1)
 {
-    std::cout << "AForm default constructor called" << std::endl;
+    // std::cout << "AForm default constructor called" << std::endl;
 }
 
 AForm::AForm(std::string name, int const signGrade, int const exeGrade): _name(name), _signed(false), _signGrade(signGrade), _exeGrade(exeGrade)
 {
-	std::cout << "AForm constructor called with min SG: " << signGrade << ", and min EG: " << exeGrade << std::endl;
+	// std::cout << "AForm constructor called with min SG: " << signGrade << ", and min EG: " << exeGrade << std::endl;
 	if (signGrade > 150 || exeGrade > 150)
 			throw GradeTooLowException();
 	else if (signGrade < 1 || exeGrade < 1)
@@ -17,12 +17,12 @@ AForm::AForm(std::string name, int const signGrade, int const exeGrade): _name(n
 
 AForm::AForm(const AForm& src): _name(src._name), _signed(src._signed), _signGrade(src._signGrade), _exeGrade(src._exeGrade)
 {
-    std::cout << "AForm copy constructor called" << std::endl;
+    // std::cout << "AForm copy constructor called" << std::endl;
 }
 
 AForm& AForm::operator=(const AForm& rhs)
 {
-    std::cout << "AForm copy assignment operator called" << std::endl;
+    // std::cout << "AForm copy assignment operator called" << std::endl;
     _signed = rhs._signed;
     return *this;
 }
@@ -68,7 +68,7 @@ void AForm::execute(Bureaucrat const & executor) const
         throw IsNotSignedException();
     else if (executor.getGrade() > _exeGrade)
         throw GradeTooLowException();
-    std::cout << "Execute form\n";
+    action();
 }
 
 std::ostream & operator<<(std:: ostream & o, AForm const & rhs)
@@ -101,5 +101,10 @@ const char* AForm::IsSignedException::what() const throw()
 
 const char* AForm::IsNotSignedException::what() const throw()
 {
-    return ("\033[0;31mthe form cannot be execute because it's not signed yet !\033[0m");
+    return ("\033[0;31mthe form is not signed yet !\033[0m");
+}
+
+const char* AForm::RobotomyFailedException::what() const throw()
+{
+    return ("\033[0;31mRobotomy failed\033[0m");
 }
