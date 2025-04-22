@@ -23,14 +23,6 @@ class Form
 		public:
 		virtual const char* what() const throw();
 	};
-    class IsSignedException: public std::exception
-	{
-		public:
-		virtual const char* what() const throw()
-		{
-			return ("\033[0;31mthe form is already signed !\033[0m");
-		}
-	};
         Form(void);
         Form(const Form& src);
 		Form(std::string name, int const signGrade, int const exeGrade);

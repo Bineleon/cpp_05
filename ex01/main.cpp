@@ -42,9 +42,9 @@ int main(void)
 		try
 		{
 			Bureaucrat b1("Bob", 20);
-			Form f1("Some form", 20, 10);
-			Form f2("Some form", 30, 10);
-			Form f3("Some form", 10, 10);
+			Form f1("Some form 20", 20, 10);
+			Form f2("Some form 30", 30, 10);
+			Form f3("Some form 10", 10, 10);
 
 			b1.signForm(f1);
 			b1.signForm(f2);
@@ -75,6 +75,7 @@ int main(void)
 		try
 		{
 			Bureaucrat b1("Bob", 20);
+			std::cout << YELLOW << "Trying to instanciate Form with SG : 200 ..." << RESET << std::endl;
 			Form f1("Some form", 200, 5);
 
 			std::cout << "Should never be seen" << std::endl;
@@ -89,6 +90,7 @@ int main(void)
 		try
 		{
 			Bureaucrat b1("Bob", 20);
+			std::cout << YELLOW << "Trying to instanciate Form with EG : 0 ..." << RESET << std::endl;
 			Form f1("Some form", 20, 0);
 
 			std::cout << "Should never be seen" << std::endl;

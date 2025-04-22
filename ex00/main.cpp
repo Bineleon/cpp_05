@@ -94,7 +94,7 @@ int main(void)
 
 			Bureaucrat b3(b1);
 			Bureaucrat b4 = b2;
-            std::cout << SMYELLOW << "Bureaucrat b:			" << b << RESET << std::endl;
+            std::cout << SMYELLOW << "Bureaucrat b:		" << b << RESET << std::endl;
 			std::cout << SMYELLOW << "Bureaucrat b1:		" << b1 << RESET << std::endl;
 			std::cout << SMYELLOW << "Bureaucrat b2:		" << b2 << RESET << std::endl;
 			std::cout << SMYELLOW << "Bureaucrat b3(b1): 	" << b3 << RESET << std::endl;
