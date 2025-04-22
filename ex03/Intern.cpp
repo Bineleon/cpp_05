@@ -46,7 +46,10 @@ AForm* Intern::makeForm(std::string const name, std::string const target)
     for (int i = 0; i < 3; i++)
     {
         if (name == formNames[i])
+		{
+			std::cout << SMYELLOW << "Intern creates form " << name << RESET<< std::endl; 
             return (*functions[i])(target);
+		}
     }
     throw FormCreationFailedException();
     return NULL;
