@@ -40,7 +40,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 void ShrubberyCreationForm::action(void) const
 {
 	std::string fileName = _target + "_shrubbery";
-	std::ofstream myFile(fileName);
+	std::ofstream myFile(fileName.c_str());
 	writeTrees(myFile);
 	std::cout << SMYELLOW << "Shrubbery creation form executed: \"cat " << fileName << "\" to take a look at a beautiful shrubbery." << RESET << std::endl;
 }

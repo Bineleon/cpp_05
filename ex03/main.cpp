@@ -63,6 +63,7 @@ int main(void)
         try
         {
             AForm* invalid;
+			std::cout << YELLOW << "Trying to create Form \"blabla\" ..." << RESET << std::endl;
             invalid = someRandomIntern.makeForm("blabla", "bibi");
 
             b1.signForm(*invalid);
